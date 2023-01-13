@@ -29,6 +29,10 @@ import "./css/App.css"
 //Images import
 import logo from "./assets/Logo.svg";
 import photo from "./assets/photo.jpg";
+import photo1 from "./assets/Photo.png";
+import photo2 from "./assets/Photo1.png";
+import photo3 from "./assets/Photo2.png";
+import photo4 from "./assets/Photo3.png";
 
 const NavBar = () => {
 
@@ -169,25 +173,24 @@ const HomePage = () => {
 
       </Grid>
 
-
       {/* Next Section  */}
-      <Grid  container p={"5% 15%"} spacing={5} >
+      <Grid container p={"5% 15%"} spacing={5} >
         <Grid item xs={12} md={5}>
-          <h2 style={{fontSize: "40px"}}>
+          <h2 style={{ fontSize: "40px" }}>
             We Create The Art Of Stylish Living Stylishly
           </h2>
           <p>
             It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points of using that it  has a more or less normal.
           </p>
           <div className="mt-4 d-flex align-items-center">
-                <LocalPhoneOutlinedIcon className="bg-primary-3 primary-1 p-3 rounded-circle"  sx={{ fontSize: 40 }} />
-                <div className='d-flex flex-column ms-3'>
-                    <b>0123456789</b>
-                   <span>Call us Anytime</span>
-                </div>              
+            <LocalPhoneOutlinedIcon className="bg-primary-3 primary-1 p-3 rounded-circle" sx={{ fontSize: 40 }} />
+            <div className='d-flex flex-column ms-3'>
+              <b>0123456789</b>
+              <span>Call us Anytime</span>
+            </div>
           </div>
-          
-          <Button variant="contained" className="bg-primary-2 p-3 mt-4" sx={{borderRadius: 4}} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
+
+          <Button variant="contained" className="bg-primary-2 p-3 mt-4" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
 
         </Grid>
 
@@ -196,6 +199,23 @@ const HomePage = () => {
           <img className='double-curve-img' src={photo} alt={"Passage"} />
         </Grid>
 
+      </Grid>
+
+      {/* Next Section  */}
+      <Grid className={"projects-view"} container p={"5% 15%"} spacing={5} >
+        <Grid item xs={12}>
+          <h2 className={"text-center mb-0"}>Follow Our Projects</h2>        
+          <p className={"mx-auto text-center mt-2"} style={{maxWidth: "550px"}}>
+            It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
+          </p>
+        </Grid>
+
+        <Grid className={"d-flex"} item xs={12} sm={6} p={5}>
+          <img className='curve-top-right ms-auto' height={"350"} src={photo1} alt={"Photo 1"} />
+        </Grid>
+        <Grid  className={"d-flex"} item xs={12} sm={6} p={5}>
+          <img className='curve-top-left me-auto' src={photo1} alt={"Photo 1"} />
+        </Grid>
       </Grid>
 
     </div>

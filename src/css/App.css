@@ -119,3 +119,15 @@ footer a{
     border-bottom-left-radius: 100px;
     width: 100%;
 }
+
+.curve-top-right{
+    border-top-right-radius: 100px;
+}
+
+.curve-top-left{
+    border-top-left-radius: 100px;
+}
+
+.projects-view {
+
+}
