@@ -121,6 +121,7 @@ const NavBar = () => {
 const HomePage = () => {
   return (
     <div>
+
       <div className='top-view'>
         <div className='my-auto'>
           <h1>
@@ -129,11 +130,35 @@ const HomePage = () => {
           <p>
             Duis eiusmod officia eu officia minim in aliquip ea deserunt non velit veniam ipsum mollit.
           </p>
-
-
-
         </div>
       </div>
+
+      <div className='plan-display'>
+
+      <Grid container p={"5% 15%"} spacing={3}>
+        <Grid item xs={12} md={4} className={"text-center"}>
+          <h6>
+            Project Plan
+          </h6>
+
+          <p>
+            Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
+          </p>
+
+          <Button variant="text">Read More</Button>
+        </Grid>
+
+        <Grid item xs={6} md={4}>
+          
+        </Grid>
+
+        <Grid item xs={6} md={4}>
+          
+        </Grid>
+
+      </Grid>
+      </div>
+
     </div>
   );
 }
@@ -143,7 +168,7 @@ const Footer = () => {
   return (
     <footer>
       <Grid container p={"5% 15%"} spacing={3}>
-        <Grid item xs={5}>
+        <Grid item xs={12} md={5}>
           <div className='d-flex align-items-center'>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
             <Typography
@@ -172,7 +197,7 @@ const Footer = () => {
 
         </Grid>
 
-        <Grid item xs>
+        <Grid item xs={6} md={2}>
           <div>
             <h6>
               Pages
@@ -200,7 +225,7 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item xs>
+        <Grid item xs={6} md={2}>
           <div>
             <h6>
               Services
@@ -228,8 +253,8 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item xs={3}>
-        <div>
+        <Grid item xs={12} md={3}>
+          <div>
             <h6>
               Contact
             </h6>
@@ -246,7 +271,7 @@ const Footer = () => {
             <p>
               (123) 456 - 7890
             </p>
-           
+
           </div>
         </Grid>
 
