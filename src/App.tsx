@@ -15,11 +15,12 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
 import SearchIcon from '@mui/icons-material/SearchOutlined';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
-
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 
 //Css imports
 import "./css/bootstrap-utilities.min.css"
@@ -27,6 +28,7 @@ import "./css/App.css"
 
 //Images import
 import logo from "./assets/Logo.svg";
+import photo from "./assets/photo.jpg";
 
 const NavBar = () => {
 
@@ -133,31 +135,68 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className='plan-display'>
-
-      <Grid container p={"5% 15%"} spacing={3}>
+      {/* Next Section  */}
+      <Grid container p={"5% 15%"} spacing={5}>
         <Grid item xs={12} md={4} className={"text-center"}>
           <h6>
             Project Plan
           </h6>
-
           <p>
             Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
           </p>
-
-          <Button variant="text">Read More</Button>
+          <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
         </Grid>
 
-        <Grid item xs={6} md={4}>
-          
+        <Grid item xs={12} md={4} className={"text-center"}>
+          <h6>
+            Interior Work
+          </h6>
+          <p>
+            Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
+          </p>
+          <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
         </Grid>
 
-        <Grid item xs={6} md={4}>
-          
+        <Grid item xs={12} md={4} className={"text-center"}>
+          <h6>
+            Realization
+          </h6>
+          <p>
+            Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
+          </p>
+          <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
         </Grid>
 
       </Grid>
-      </div>
+
+
+      {/* Next Section  */}
+      <Grid  container p={"5% 15%"} spacing={5} >
+        <Grid item xs={12} md={5}>
+          <h2 style={{fontSize: "40px"}}>
+            We Create The Art Of Stylish Living Stylishly
+          </h2>
+          <p>
+            It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points of using that it  has a more or less normal.
+          </p>
+          <div className="mt-4 d-flex align-items-center">
+                <LocalPhoneOutlinedIcon className="bg-primary-3 primary-1 p-3 rounded-circle"  sx={{ fontSize: 40 }} />
+                <div className='d-flex flex-column ms-3'>
+                    <b>0123456789</b>
+                   <span>Call us Anytime</span>
+                </div>              
+          </div>
+          
+          <Button variant="contained" className="bg-primary-2 p-3 mt-4" sx={{borderRadius: 4}} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
+
+        </Grid>
+
+        {/* Next Section  */}
+        <Grid item xs={12} md={7} p={3} >
+          <img className='double-curve-img' src={photo} alt={"Passage"} />
+        </Grid>
+
+      </Grid>
 
     </div>
   );
