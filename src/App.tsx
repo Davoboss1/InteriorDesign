@@ -14,6 +14,13 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
+import SearchIcon from '@mui/icons-material/SearchOutlined';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+
+
 //Css imports
 import "./css/bootstrap-utilities.min.css"
 import "./css/App.css"
@@ -65,6 +72,7 @@ const NavBar = () => {
                 {page}
               </Button>
             ))}
+            <SearchIcon className={"my-auto"} />
           </Box>
 
           {/* Small screen display */}
@@ -134,39 +142,112 @@ const Footer = () => {
 
   return (
     <footer>
-      <Grid container p={"5% 10%"} spacing={3}>
+      <Grid container p={"5% 15%"} spacing={3}>
         <Grid item xs={5}>
           <div className='d-flex align-items-center'>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
-          <Typography
-            variant="h6"
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              ml: 2,
-              textDecoration: 'none',
-              fontFamily: "'DM Serif Display', serif"
-            }}
-          >
-            Interno
-          </Typography>
+            <Typography
+              className='primary-2'
+              variant="h4"
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                ml: 2,
+                textDecoration: 'none',
+                fontFamily: "'DM Serif Display', serif"
+              }}
+            >
+              Interno
+            </Typography>
           </div>
           <p>Non velit cillum ut duis magna reprehenderit amet reprehenderit magna sunt duis cupidatat eu et.</p>
+          <div className="d-flex justify-content-around w-50">
+            <FacebookIcon />
+            <TwitterIcon />
+            <LinkedInIcon />
+            <InstagramIcon />
 
-        
+          </div>
+
         </Grid>
 
         <Grid item xs>
+          <div>
+            <h6>
+              Pages
+            </h6>
 
+            <a href="/">
+              About Us
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Our Projects
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Our Team
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Contact Us
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Services
+            </a>
+          </div>
         </Grid>
 
         <Grid item xs>
+          <div>
+            <h6>
+              Services
+            </h6>
 
+            <a href="/">
+              Kitchen
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Living Area
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Bathroom
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Dining Hall
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Bedroom
+            </a>
+          </div>
         </Grid>
 
         <Grid item xs={3}>
+        <div>
+            <h6>
+              Contact
+            </h6>
 
+            <p>
+              55 East Birchwood Ave. <br />
+              Brookyln, New York 11201
+            </p>
+
+            <p>
+              Contact@Interno.com
+            </p>
+
+            <p>
+              (123) 456 - 7890
+            </p>
+           
+          </div>
         </Grid>
 
       </Grid>
