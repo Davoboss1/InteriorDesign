@@ -466,8 +466,22 @@ const PricingPage = () => {
   return (
     <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
       {prices.map((price) =>
-        <Grid item xs={12} md={4} className={"text-center"}>
+        <Grid item xs={12} sm={6} lg={4} className={"text-center align-self-stretch"}>
+            <div className='bg-primary-3 py-5 br-15'>
+              <h4 className='my-0'>{price.name}</h4>
+              <h6 className="my-0">$<span style={{fontSize: "60px"}}>{price.price}</span></h6>
+              <h6 className='my-0'>/Month</h6>
+              <div className='border-top-primary-1 mt-4 pt-3 pb-3' >
+                {price.features.map((feature)=>(
+                  <p>
+                    {feature}
+                  </p>
+                ))}
 
+              </div>
+              <Button variant="contained" className="bg-primary-1 px-4 py-3 mt-auto mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Get Started </Button>
+              
+            </div>
         </Grid>
       )}
     </Grid>

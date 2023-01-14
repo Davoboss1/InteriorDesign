@@ -71,6 +71,10 @@ h6 {
     background-color: #F4F0Ec;
 }
 
+.border-top-primary-1{
+    border-top: 1px solid #CDA274;
+}
+
 .main-navbar {
     background-color: white;
     color: #292F36;
