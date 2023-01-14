@@ -1,6 +1,11 @@
 //React imports
 import { useState } from 'react';
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 // Material ui imports
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,6 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+
 
 import SearchIcon from '@mui/icons-material/SearchOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -41,9 +47,12 @@ import person1 from "./assets/person1.jpg";
 import person2 from "./assets/person2.jpg";
 import person3 from "./assets/person3.jpg";
 
+//local imports
+import { Article, Attribute, Price, Project, Review, Statistic } from "./types";
+
 const NavBar = () => {
 
-  const pages = ['Home', 'Pages', 'Services', 'Project', 'Blog', 'Contact'];
+  const pages = [{ url: '/', name: 'Home' }, { url: '/pricing', name: 'Pricing' }, { url: '/', name: 'Services' }, { url: '/', name: 'Project' }, { url: '/', name: 'Blog' }, { url: '/', name: 'Contact' }];
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -77,13 +86,16 @@ const NavBar = () => {
 
           <Box className='d-none ms-auto d-md-flex'>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <Link to={page.url}>
+                <Button
+                  key={page.name}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page.name}
+                </Button>
+              </Link>
+
             ))}
             <SearchIcon className={"my-auto"} />
           </Box>
@@ -119,9 +131,12 @@ const NavBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" >{page}</Typography>
-                </MenuItem>
+                <Link to={page.url}>
+                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" >{page.name}</Typography>
+                  </MenuItem>
+                </Link>
+
               ))}
             </Menu>
           </Box>
@@ -131,7 +146,253 @@ const NavBar = () => {
   );
 }
 
-const HomePage = () => {
+//Attributes display component
+//Arguments = Attributes[]
+const AttributesView = ({ attributes }: { attributes: Attribute[] }) => (
+  <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
+    {attributes.map((attribute) =>
+      <Grid item xs={12} md={4} className={"text-center"}>
+        <h6>
+          {attribute.attribute}
+        </h6>
+        <p>
+          {attribute.description}
+        </p>
+        <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
+      </Grid>
+    )}
+  </Grid>
+)
+
+//Reviews display component
+//Arguments = Review[]
+const ReviewView = ({ reviews }: { reviews: Review[] }) => (
+  <Grid container p={{ xs: "5%", sm: "10% 15%" }} >
+    <Grid container item xs={12} spacing={{ sm: 2 }} className={"text-center bg-primary-3 px-2 ps-md-4 pe-md-5 py-5"} sx={{ borderRadius: 10 }}>
+      <h2 className="w-100 mt-0">What People Think About Us</h2>
+      {reviews.map((review) => (
+        <Grid className="my-2" item xs={12} md={4} >
+          <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
+            <img src={review.image_src} alt={"Person 1"} height="50" className="rounded-circle" />
+            <div className='ms-3 ' >
+              <h6 className="my-0">
+                {review.name}
+              </h6>
+              <span className="d-block" >{review.location}</span>
+            </div>
+            <p>
+              {review.description}
+            </p>
+
+          </div>
+
+        </Grid>
+      ))}
+
+    </Grid>
+  </Grid>
+);
+
+//Reviews display component
+//Arguments = Project[]
+const ProjectsView = ({ projects }: { projects: Project[] }) => {
+
+  return (
+    <Grid className={"projects-view"} container p={"5% 15%"} spacing={{ md: 3 }} >
+      <Grid className="p-0" item xs={12}>
+        <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
+        <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
+          It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
+        </p>
+      </Grid>
+
+      {projects.map((project, index) => (
+        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
+          <div className=' image-container mx-md-auto'>
+            {/* Apply different classes based on the sequence  */}
+            <img className={
+              {
+                '0': "curve-top-right",
+                '1': "curve-top-left",
+                '2': "curve-bottom-right",
+                '3': "curve-bottom-left"
+              }[index % 4]
+            } src={project.image_src} alt={"Photo 1"} />
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <div>
+                <h6 className="my-0">{project.name}</h6>
+                <p className='my-0'>{project.type}</p>
+              </div>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+        </Grid>
+      ))}
+
+
+    </Grid>
+  );
+}
+
+//Statistics display component
+//Arguments = Statistic[]
+const StatisticsView = ({ statistics }: { statistics: Statistic[] }) => (
+  <Grid className='bg-primary-3 stats-view' container p={"7% 20%"} >
+    {statistics.map(statistic => (
+      <Grid item xs={12} md={3} className={"text-center"}>
+        <h1 className='primary-1 my-0'>{statistic.number}</h1>
+        <p className='mb-lg-0'>{statistic.text}</p>
+      </Grid>
+    ))}
+
+  </Grid>
+)
+//Article Display Component
+//Arguments = Statistic[]
+const ArticlesView = ({ articles }: { articles: Article[] }) => (
+  <Grid className="article-view" container p={"5% 15%"} spacing={{ md: 5 }}>
+    <Grid item xs={12} className={"text-center"}>
+      <h2 className="mb-0">Articles and News</h2>
+      <p className='mx-auto' style={{ maxWidth: "600px" }}>
+        Eiusmod velit cupidatat culpa adipisicing do id amet nisi Lorem cupidatat id pariatur. Esse laborum esse voluptate cillum in ullamco amet et ex nostrud voluptat.
+      </p>
+    </Grid>
+
+    {articles.map((article, index) => (
+      <Grid item xs={12} md={6} lg={4} className={`article-item my-2 ${(index % 3 == 1) && 'bg-primary-3 border-0'}`}>
+        <div>
+          <div className='image-view'>
+            <img src={article.image_src} alt={"Photo 5"} />
+            <span>{article.type}</span>
+          </div>
+          <h6 className='my-0'>{article.name}.</h6>
+          <div className='d-flex align-items-center mt-3 mb-4'>
+            <p className='my-0'>{article.date}</p>
+            <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+              <ArrowForwardIcon />
+            </IconButton>
+          </div>
+        </div>
+
+      </Grid>
+    ))}
+  </Grid>
+)
+
+const JoinDisplay = () => (
+  <Grid container p={"5% 15%"}>
+    <Grid item xs={12} className={"text-center bg-primary-2 text-light br-25 py-5"}>
+      <h2 className='mb-0'>Wanna join the Interno?</h2>
+      <p>Consequat aute nostrud ipsum elit irure sit culpa aliqua exercitation.</p>
+      <Button variant="contained" className="d-flex bg-primary-1 px-4 py-3  mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Contact Us</Button>
+    </Grid>
+  </Grid>
+)
+
+const Homepage = () => {
+
+  const attributes: Attribute[] = [
+    {
+      attribute: "Project Plan",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Interior Work",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Realization",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    }
+  ];
+
+  const reviews: Review[] = [
+    {
+      image_src: person1,
+      name: "Natasha SMith",
+      location: "New York, USA",
+      description: "Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint."
+    },
+    {
+      image_src: person2,
+      name: "Raymond Galario",
+      location: "Sydney, Australia",
+      description: "Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint."
+    },
+    {
+      image_src: person3,
+      name: "Benny Roll",
+      location: "Perth, Australia",
+      description: "Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint."
+    },
+  ];
+
+  const projects: Project[] = [
+    {
+      image_src: photo1,
+      name: "Modern Kitchen",
+      type: "Decor / Architecture"
+    },
+    {
+      image_src: photo2,
+      name: "Modern Kitchen",
+      type: "Decor / Architecture"
+    },
+    {
+      image_src: photo3,
+      name: "Modern Kitchen",
+      type: "Decor / Architecture"
+    },
+    {
+      image_src: photo4,
+      name: "Modern Kitchen",
+      type: "Decor / Architecture"
+    },
+  ]
+
+  const statistics: Statistic[] = [
+    {
+      number: 12,
+      text: "Years of Experience"
+    },
+    {
+      number: 85,
+      text: "Successful Projects"
+    },
+    {
+      number: 15,
+      text: "Active Projects"
+    },
+    {
+      number: 95,
+      text: "Happy Customers"
+    },
+  ]
+
+  const articles: Article[] = [
+    {
+      image_src: photo5,
+      name: "Let's Get Solution For Building Construction Work.",
+      type: "Kitchen Design",
+      date: "25th, December, 2022"
+    },
+    {
+      image_src: photo6,
+      name: "Let's Get Solution For Building Construction Work.",
+      type: "Kitchen Design",
+      date: "27th, December, 2022"
+    },
+    {
+      image_src: photo7,
+      name: "Best For Any Office & Buisness Interior solution.",
+      type: "Interior Design",
+      date: "1st, December, 2022"
+    },
+  ];
+
+
   return (
     <div>
 
@@ -146,90 +407,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Next Section  */}
-      <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
-        <Grid item xs={12} md={4} className={"text-center"}>
-          <h6>
-            Project Plan
-          </h6>
-          <p>
-            Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
-          </p>
-          <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
-        </Grid>
-
-        <Grid item xs={12} md={4} className={"text-center"}>
-          <h6>
-            Interior Work
-          </h6>
-          <p>
-            Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
-          </p>
-          <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
-        </Grid>
-
-        <Grid item xs={12} md={4} className={"text-center"}>
-          <h6>
-            Realization
-          </h6>
-          <p>
-            Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit.
-          </p>
-          <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
-        </Grid>
-
-      </Grid>
-
-      {/* Next Section  */}
-      <Grid container p={{ xs: "5%", sm: "10% 15%" }} >
-        <Grid container item xs={12} spacing={{ sm: 2 }} className={"text-center bg-primary-3 px-2 ps-md-4 pe-md-5 py-5"} sx={{ borderRadius: 10 }}>
-          <h2 className="w-100 mt-0">What People Think About Us</h2>
-          <Grid item xs={12} md={4} >
-            <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
-              <img src={person1} alt={"Person 1"} height="50" className="rounded-circle" />
-              <div className='ms-3 ' >
-                <h6 className="my-0">
-                  Natasha Mith
-                </h6>
-                <span className="d-block" >Sydney, USA</span>
-              </div>
-              <p>Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint.</p>
-
-            </div>
-
-          </Grid>
-          <Grid item xs={12} md={4} >
-            <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
-              <img src={person2} alt={"Person 2"} height="50" className="rounded-circle" />
-              <div className='ms-3 ' >
-                <h6 className="my-0">
-                  Raymond Galario
-                </h6>
-                <span className="d-block" >Sydney, Australia</span>
-              </div>
-
-              <p>Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint.</p>
-
-            </div>
-
-          </Grid>
-          <Grid item xs={12} md={4} >
-            <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
-              <img src={person2} alt={"Person 2"} height="50" className="rounded-circle" />
-              <div className='ms-3 ' >
-                <h6 className="my-0">
-                  Benny Roll
-                </h6>
-                <span className="d-block" >Sydney, New York</span>
-              </div>
-
-              <p>Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint.</p>
-
-            </div>
-
-          </Grid>
-        </Grid>
-      </Grid>
+      <AttributesView attributes={attributes} />
 
       {/* Next Section  */}
       <Grid container p={"5% 15%"} spacing={{ md: 5 }} >
@@ -252,176 +430,50 @@ const HomePage = () => {
 
         </Grid>
 
-        {/* Next Section  */}
         <Grid item xs={12} lg={7} p={3} >
           <img className='double-curve-img mx-auto' src={photo} alt={"Passage"} />
         </Grid>
 
       </Grid>
 
-      {/* Next Section  */}
-      <Grid className={"projects-view"} container p={"5% 15%"} spacing={{ md: 3 }} >
-        <Grid className="p-0" item xs={12}>
-          <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
-          <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
-            It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
-          </p>
-        </Grid>
-
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
-          <div className=' image-container mx-md-auto'>
-            <img className='curve-top-right' src={photo1} alt={"Photo 1"} />
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <div>
-                <h6 className="my-0">Modern Kitchen</h6>
-                <p className='my-0'>Decor / Architecture</p>
-              </div>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-        </Grid>
-
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
-          <div className=' image-container mx-md-auto'>
-            <img className='curve-top-left' src={photo2} alt={"Photo 2"} />
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <div>
-                <h6 className="my-0">Modern Kitchen</h6>
-                <p className='my-0'>Decor / Architecture</p>
-              </div>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-        </Grid>
-
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
-          <div className=' image-container mx-md-auto'>
-            <img className='curve-bottom-right' src={photo3} alt={"Photo 3"} />
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <div>
-                <h6 className="my-0">Modern Kitchen</h6>
-                <p className='my-0'>Decor / Architecture</p>
-              </div>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-        </Grid>
-
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
-          <div className=' image-container mx-md-auto'>
-            <img className='curve-bottom-left' src={photo4} alt={"Photo 4"} />
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <div>
-                <h6 className="my-0">Modern Kitchen</h6>
-                <p className='my-0'>Decor / Architecture</p>
-              </div>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
-
-      {/* Next Section  */}
-      <Grid className='bg-primary-3 stats-view' container p={"7% 20%"} >
-        <Grid item xs={12} md={3} className={"text-center"}>
-          <h1 className='primary-1 my-0'>12</h1>
-          <p className='mb-lg-0'>Years of Experience</p>
-        </Grid>
-        <Grid item xs={12} md={3} className={"text-center"}>
-          <h1 className='primary-1 my-0'>85</h1>
-          <p className='mb-lg-0'>Successful Projects</p>
-        </Grid>
-        <Grid item xs={12} md={3} className={"text-center"}>
-          <h1 className='primary-1 my-0'>15</h1>
-          <p className='mb-lg-0'>Active Projects</p>
-        </Grid>
-        <Grid item xs={12} md={3} className={"text-center"}>
-          <h1 className='primary-1 my-0'>95</h1>
-          <p className='mb-lg-0'>Happy Customers</p>
-        </Grid>
-      </Grid>
-
-      {/* Next Section  */}
-      <Grid className="article-view" container p={"5% 15%"} spacing={{ md: 5 }}>
-        <Grid item xs={12} className={"text-center"}>
-          <h2 className="mb-0">Articles and News</h2>
-          <p className='mx-auto' style={{ maxWidth: "600px" }}>
-            Eiusmod velit cupidatat culpa adipisicing do id amet nisi Lorem cupidatat id pariatur. Esse laborum esse voluptate cillum in ullamco amet et ex nostrud voluptat.
-          </p>
-        </Grid>
-
-        <Grid item xs={12} md={6} lg={4} className={"article-item"}>
-          <div>
-            <div className='image-view'>
-              <img src={photo5} alt={"Photo 5"} />
-              <span>Kitchen Design</span>
-            </div>
-            <h6 className='my-0'>Let's Get Solution For Building Construction Work.</h6>
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <p className='my-0'>Decomber 2022</p>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-
-        </Grid>
-        <Grid item xs={12} md={6} lg={4} className={"article-item bg-primary-3 border-0"}>
-          <div>
-            <div className='image-view'>
-              <img src={photo5} alt={"Photo 5"} />
-              <span>Kitchen Design</span>
-            </div>
-            <h6 className='my-0'>Let's Get Solution For Building Construction Work.</h6>
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <p className='my-0'>Decomber 2022</p>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-
-        </Grid>
-        <Grid item xs={12} md={6} lg={4} className={"article-item"}>
-          <div>
-            <div className='image-view'>
-              <img src={photo5} alt={"Photo 5"} />
-              <span>Kitchen Design</span>
-            </div>
-            <h6 className='my-0'>Let's Get Solution For Building Construction Work.</h6>
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <p className='my-0'>Decomber 2022</p>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
-              </IconButton>
-            </div>
-          </div>
-
-        </Grid>
-      </Grid>
-
-      {/* Next Section  */}
-      <Grid container p={"5% 15%"}>
-        <Grid item xs={12} className={"text-center bg-primary-2 text-light br-25 py-5"}>
-          <h2 className='mb-0'>Wanna join the Interno?</h2>
-          <p>Consequat aute nostrud ipsum elit irure sit culpa aliqua exercitation.</p>
-          <Button variant="contained" className="d-flex bg-primary-1 px-4 py-3  mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Contact Us</Button>
-
-        </Grid>
-
-      </Grid>
-
+      <ReviewView reviews={reviews} />
+      <ProjectsView projects={projects} />
+      <StatisticsView statistics={statistics} />
+      <ArticlesView articles={articles} />
+      <JoinDisplay />
     </div>
   );
 }
+
+const PricingPage = () => {
+  const prices : Price[] = [
+    {
+      name: "Design Advices",
+      price: 29,
+      features: ["General Living Space Advises", "Renovation Advices", "Interior Design Advices","Furniture Reorganisation","Up to 5 hours meeting"]
+    },
+    {
+      name: "Complete Interior",
+      price: 39,
+      features: ["Complete Home Redesign", "Interior and Exterior works", "Modular Interior Planning","Kitchen Design","Garages Organisation"]
+    },
+    {
+      name: "Furniture Design",
+      price: 59,
+      features: ["Furniture for Living Room", "Furniture Refurbishment",  "Interior Design Advices","Sofas And Armchairs", "Tables and Chairs","Kitchens"]
+    }
+  ];
+  return (
+    <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
+      {prices.map((price) =>
+        <Grid item xs={12} md={4} className={"text-center"}>
+
+        </Grid>
+      )}
+    </Grid>
+  );
+}
+
 
 const Footer = () => {
 
@@ -543,11 +595,14 @@ const Footer = () => {
 function App() {
 
   return (
-    <>
+    <Router>
       <NavBar />
-      <HomePage />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/pricing" element={<PricingPage />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   )
 }
 
