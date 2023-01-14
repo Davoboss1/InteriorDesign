@@ -117,7 +117,9 @@ footer a{
 .double-curve-img{
     border-top-right-radius: 200px;
     border-bottom-left-radius: 100px;
+    max-width: 500px;
     width: 100%;
+    display: block;
 }
 
 .curve-top-right{
@@ -128,6 +130,63 @@ footer a{
     border-top-left-radius: 100px;
 }
 
-.projects-view {
+.curve-bottom-right{
+    border-bottom-right-radius: 100px;
+}
 
+.curve-bottom-left{
+    border-bottom-left-radius: 100px;
+}
+
+.projects-view .image-container{
+    max-width: 400px;
+    width: 100%;
+}
+
+.projects-view img{
+    width: 100%;
+}
+
+.MuiGrid-root{
+    margin-left: 0;
+    margin-right: 0;
+    width:100%
+}
+
+/*
+.MuiGrid-root > .MuiGrid-item{
+    padding: 0;
+}
+*/
+
+.stats-view > div{
+    border-left: 1px solid #CDA274;
+}
+
+.stats-view > div:first-child{
+    border-left: none;
+}
+
+@media screen and (max-width: 900px) {
+    .stats-view > div{
+    border-left: none;
+    border-top: 1px solid #CDA274;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    .stats-view > div:first-child{
+        border-top: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .text-left-lg{
+        text-align: left !important;
+    }
+
+    .justify-content-start-lg{
+        justify-content: start !important;
+    }
 }

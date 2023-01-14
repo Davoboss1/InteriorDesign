@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import SearchIcon from '@mui/icons-material/SearchOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -140,7 +141,7 @@ const HomePage = () => {
       </div>
 
       {/* Next Section  */}
-      <Grid container p={"5% 15%"} spacing={5}>
+      <Grid container p={"5% 15%"} spacing={{md:5}}>
         <Grid item xs={12} md={4} className={"text-center"}>
           <h6>
             Project Plan
@@ -174,47 +175,120 @@ const HomePage = () => {
       </Grid>
 
       {/* Next Section  */}
-      <Grid container p={"5% 15%"} spacing={5} >
-        <Grid item xs={12} md={5}>
-          <h2 style={{ fontSize: "40px" }}>
+      <Grid container p={"5% 15%"} spacing={{md:5}} >
+        <Grid item xs={12} lg={5}>
+          <h2 className={"text-center text-left-lg"} style={{ fontSize: "40px" }}>
             We Create The Art Of Stylish Living Stylishly
           </h2>
-          <p>
+          <p className={"text-center text-left-lg"}>
             It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points of using that it  has a more or less normal.
           </p>
-          <div className="mt-4 d-flex align-items-center">
+          <Box className="mt-4 d-flex align-items-center justify-content-center justify-content-start-lg">
             <LocalPhoneOutlinedIcon className="bg-primary-3 primary-1 p-3 rounded-circle" sx={{ fontSize: 40 }} />
             <div className='d-flex flex-column ms-3'>
               <b>0123456789</b>
               <span>Call us Anytime</span>
             </div>
-          </div>
+          </Box>
 
-          <Button variant="contained" className="bg-primary-2 p-3 mt-4" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
+          <Button variant="contained" className="d-flex bg-primary-2 px-4 py-3 mt-4 mx-auto mx-xl-0" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
 
         </Grid>
 
         {/* Next Section  */}
-        <Grid item xs={12} md={7} p={3} >
-          <img className='double-curve-img' src={photo} alt={"Passage"} />
+        <Grid item xs={12} lg={7} p={3} >
+          <img className='double-curve-img mx-auto' src={photo} alt={"Passage"} />
         </Grid>
 
       </Grid>
 
       {/* Next Section  */}
-      <Grid className={"projects-view"} container p={"5% 15%"} spacing={5} >
-        <Grid item xs={12}>
-          <h2 className={"text-center mb-0"}>Follow Our Projects</h2>        
-          <p className={"mx-auto text-center mt-2"} style={{maxWidth: "550px"}}>
+      <Grid className={"projects-view"} container p={"5% 15%"} spacing={{md:3}} >
+        <Grid className="p-0" item xs={12}>
+          <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
+          <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
             It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
           </p>
         </Grid>
 
-        <Grid className={"d-flex"} item xs={12} sm={6} p={5}>
-          <img className='curve-top-right ms-auto' height={"350"} src={photo1} alt={"Photo 1"} />
+        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
+          <div className=' image-container mx-md-auto'>
+            <img className='curve-top-right' src={photo1} alt={"Photo 1"} />
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <div>
+                <h6 className="my-0">Modern Kitchen</h6>
+                <p className='my-0'>Decor / Architecture</p>
+              </div>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
         </Grid>
-        <Grid  className={"d-flex"} item xs={12} sm={6} p={5}>
-          <img className='curve-top-left me-auto' src={photo1} alt={"Photo 1"} />
+
+        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
+          <div className=' image-container mx-md-auto'>
+            <img className='curve-top-left' src={photo2} alt={"Photo 2"} />
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <div>
+                <h6 className="my-0">Modern Kitchen</h6>
+                <p className='my-0'>Decor / Architecture</p>
+              </div>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+        </Grid>
+
+        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
+          <div className=' image-container mx-md-auto'>
+            <img className='curve-bottom-right' src={photo3} alt={"Photo 3"} />
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <div>
+                <h6 className="my-0">Modern Kitchen</h6>
+                <p className='my-0'>Decor / Architecture</p>
+              </div>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+        </Grid>
+
+        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
+          <div className=' image-container mx-md-auto'>
+            <img className='curve-bottom-left' src={photo4} alt={"Photo 4"} />
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <div>
+                <h6 className="my-0">Modern Kitchen</h6>
+                <p className='my-0'>Decor / Architecture</p>
+              </div>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+        </Grid>
+      </Grid>
+
+      {/* Next Section  */}
+      <Grid className='bg-primary-3 stats-view' container p={"7% 20%"} >
+        <Grid item xs={12} md={3} className={"text-center"}>
+          <h1 className='primary-1 my-0'>12</h1>
+          <p className='mb-lg-0'>Years of Experience</p>
+        </Grid>
+        <Grid item xs={12} md={3} className={"text-center"}>
+        <h1 className='primary-1 my-0'>85</h1>
+          <p className='mb-lg-0'>Successful Projects</p>
+        </Grid>
+        <Grid item xs={12} md={3} className={"text-center"}>
+        <h1 className='primary-1 my-0'>15</h1>
+          <p className='mb-lg-0'>Active Projects</p>
+        </Grid>
+        <Grid item xs={12} md={3} className={"text-center"}>
+        <h1 className='primary-1 my-0'>95</h1>
+          <p className='mb-lg-0'>Happy Customers</p>
         </Grid>
       </Grid>
 
@@ -226,7 +300,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <Grid container p={"5% 15%"} spacing={3}>
+      <Grid container p={"5% 15%"} spacing={{md:3}}>
         <Grid item xs={12} md={5}>
           <div className='d-flex align-items-center'>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
