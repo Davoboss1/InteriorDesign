@@ -34,6 +34,12 @@ import photo1 from "./assets/Photo.png";
 import photo2 from "./assets/Photo1.png";
 import photo3 from "./assets/Photo2.png";
 import photo4 from "./assets/Photo3.png";
+import photo5 from "./assets/Photo4.png";
+import photo6 from "./assets/Photo5.png";
+import photo7 from "./assets/Photo6.png";
+import person1 from "./assets/person1.jpg";
+import person2 from "./assets/person2.jpg";
+import person3 from "./assets/person3.jpg";
 
 const NavBar = () => {
 
@@ -141,7 +147,7 @@ const HomePage = () => {
       </div>
 
       {/* Next Section  */}
-      <Grid container p={"5% 15%"} spacing={{md:5}}>
+      <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
         <Grid item xs={12} md={4} className={"text-center"}>
           <h6>
             Project Plan
@@ -175,7 +181,58 @@ const HomePage = () => {
       </Grid>
 
       {/* Next Section  */}
-      <Grid container p={"5% 15%"} spacing={{md:5}} >
+      <Grid container p={{ xs: "5%", sm: "10% 15%" }} >
+        <Grid container item xs={12} spacing={{ sm: 2 }} className={"text-center bg-primary-3 px-2 ps-md-4 pe-md-5 py-5"} sx={{ borderRadius: 10 }}>
+          <h2 className="w-100 mt-0">What People Think About Us</h2>
+          <Grid item xs={12} md={4} >
+            <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
+              <img src={person1} alt={"Person 1"} height="50" className="rounded-circle" />
+              <div className='ms-3 ' >
+                <h6 className="my-0">
+                  Natasha Mith
+                </h6>
+                <span className="d-block" >Sydney, USA</span>
+              </div>
+              <p>Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint.</p>
+
+            </div>
+
+          </Grid>
+          <Grid item xs={12} md={4} >
+            <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
+              <img src={person2} alt={"Person 2"} height="50" className="rounded-circle" />
+              <div className='ms-3 ' >
+                <h6 className="my-0">
+                  Raymond Galario
+                </h6>
+                <span className="d-block" >Sydney, Australia</span>
+              </div>
+
+              <p>Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint.</p>
+
+            </div>
+
+          </Grid>
+          <Grid item xs={12} md={4} >
+            <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
+              <img src={person2} alt={"Person 2"} height="50" className="rounded-circle" />
+              <div className='ms-3 ' >
+                <h6 className="my-0">
+                  Benny Roll
+                </h6>
+                <span className="d-block" >Sydney, New York</span>
+              </div>
+
+              <p>Ex commodo pariatur duis consectetur commodo ipsum aute ea tempor est dolor eiusmod nulla sint.</p>
+
+            </div>
+
+          </Grid>
+        </Grid>
+      </Grid>
+
+      {/* Next Section  */}
+      <Grid container p={"5% 15%"} spacing={{ md: 5 }} >
         <Grid item xs={12} lg={5}>
           <h2 className={"text-center text-left-lg"} style={{ fontSize: "40px" }}>
             We Create The Art Of Stylish Living Stylishly
@@ -203,7 +260,7 @@ const HomePage = () => {
       </Grid>
 
       {/* Next Section  */}
-      <Grid className={"projects-view"} container p={"5% 15%"} spacing={{md:3}} >
+      <Grid className={"projects-view"} container p={"5% 15%"} spacing={{ md: 3 }} >
         <Grid className="p-0" item xs={12}>
           <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
           <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
@@ -279,17 +336,87 @@ const HomePage = () => {
           <p className='mb-lg-0'>Years of Experience</p>
         </Grid>
         <Grid item xs={12} md={3} className={"text-center"}>
-        <h1 className='primary-1 my-0'>85</h1>
+          <h1 className='primary-1 my-0'>85</h1>
           <p className='mb-lg-0'>Successful Projects</p>
         </Grid>
         <Grid item xs={12} md={3} className={"text-center"}>
-        <h1 className='primary-1 my-0'>15</h1>
+          <h1 className='primary-1 my-0'>15</h1>
           <p className='mb-lg-0'>Active Projects</p>
         </Grid>
         <Grid item xs={12} md={3} className={"text-center"}>
-        <h1 className='primary-1 my-0'>95</h1>
+          <h1 className='primary-1 my-0'>95</h1>
           <p className='mb-lg-0'>Happy Customers</p>
         </Grid>
+      </Grid>
+
+      {/* Next Section  */}
+      <Grid className="article-view" container p={"5% 15%"} spacing={{ md: 5 }}>
+        <Grid item xs={12} className={"text-center"}>
+          <h2 className="mb-0">Articles and News</h2>
+          <p className='mx-auto' style={{ maxWidth: "600px" }}>
+            Eiusmod velit cupidatat culpa adipisicing do id amet nisi Lorem cupidatat id pariatur. Esse laborum esse voluptate cillum in ullamco amet et ex nostrud voluptat.
+          </p>
+        </Grid>
+
+        <Grid item xs={12} md={6} lg={4} className={"article-item"}>
+          <div>
+            <div className='image-view'>
+              <img src={photo5} alt={"Photo 5"} />
+              <span>Kitchen Design</span>
+            </div>
+            <h6 className='my-0'>Let's Get Solution For Building Construction Work.</h6>
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <p className='my-0'>Decomber 2022</p>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+
+        </Grid>
+        <Grid item xs={12} md={6} lg={4} className={"article-item bg-primary-3 border-0"}>
+          <div>
+            <div className='image-view'>
+              <img src={photo5} alt={"Photo 5"} />
+              <span>Kitchen Design</span>
+            </div>
+            <h6 className='my-0'>Let's Get Solution For Building Construction Work.</h6>
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <p className='my-0'>Decomber 2022</p>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+
+        </Grid>
+        <Grid item xs={12} md={6} lg={4} className={"article-item"}>
+          <div>
+            <div className='image-view'>
+              <img src={photo5} alt={"Photo 5"} />
+              <span>Kitchen Design</span>
+            </div>
+            <h6 className='my-0'>Let's Get Solution For Building Construction Work.</h6>
+            <div className='d-flex align-items-center mt-3 mb-4'>
+              <p className='my-0'>Decomber 2022</p>
+              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                <ArrowForwardIcon />
+              </IconButton>
+            </div>
+          </div>
+
+        </Grid>
+      </Grid>
+
+      {/* Next Section  */}
+      <Grid container p={"5% 15%"}>
+        <Grid item xs={12} className={"text-center bg-primary-2 text-light br-25 py-5"}>
+          <h2 className='mb-0'>Wanna join the Interno?</h2>
+          <p>Consequat aute nostrud ipsum elit irure sit culpa aliqua exercitation.</p>
+          <Button variant="contained" className="d-flex bg-primary-1 px-4 py-3  mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Contact Us</Button>
+
+        </Grid>
+
       </Grid>
 
     </div>
@@ -300,7 +427,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <Grid container p={"5% 15%"} spacing={{md:3}}>
+      <Grid container p={"5% 15%"} spacing={{ md: 3 }}>
         <Grid item xs={12} md={5}>
           <div className='d-flex align-items-center'>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
