@@ -22,7 +22,6 @@ import MenuItem from '@mui/material/MenuItem';
 
 import SearchIcon from '@mui/icons-material/SearchOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -35,6 +34,7 @@ import "./css/App.css"
 
 //Images import
 import logo from "./assets/Logo.svg";
+import clientlogos from "./assets/client-logos.png";
 import photo from "./assets/photo.jpg";
 import photo1 from "./assets/Photo.png";
 import photo2 from "./assets/Photo1.png";
@@ -43,18 +43,20 @@ import photo4 from "./assets/Photo3.png";
 import photo5 from "./assets/Photo4.png";
 import photo6 from "./assets/Photo5.png";
 import photo7 from "./assets/Photo6.png";
-import photo8 from "./assets/photo7.jpg";
-import photo9 from "./assets/Photo8.jpg";
 import person1 from "./assets/person1.jpg";
 import person2 from "./assets/person2.jpg";
 import person3 from "./assets/person3.jpg";
 
 //local imports
-import { Article, Attribute, Price, Project, Review, Statistic } from "./types";
+import { Article, Attribute, Project, Review, Statistic } from "./types";
+import { ArticlesView, AttributesView, JoinDisplay, ReviewView, StatisticsView } from './Global';
+import { ServicesPage } from './Services';
+import { ProjectsPage, ProjectsView } from './Projects';
+import { PricingPage } from './Pricing';
 
 const NavBar = () => {
 
-  const pages = [{ url: '/', name: 'Home' }, { url: '/pricing', name: 'Pricing' }, { url: '/services', name: 'Services' }, { url: '/', name: 'Project' }, { url: '/', name: 'Blog' }, { url: '/', name: 'Contact' }];
+  const pages = [{ url: '/', name: 'Home' }, { url: '/pricing', name: 'Pricing' }, { url: '/services', name: 'Services' }, { url: '/projects', name: 'Projects' }, { url: '/', name: 'Blog' }, { url: '/', name: 'Contact' }];
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -70,7 +72,7 @@ const NavBar = () => {
   return (
     <AppBar position="static" className={"main-navbar"} >
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ ml: "15%", mr: "15%" }}>
+        <Toolbar disableGutters sx={{ ml: { xs: "5%", sm: "15%" }, mr: { xs: "5%", sm: "15%" } }}>
           <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
           <Typography
             variant="h6"
@@ -99,7 +101,7 @@ const NavBar = () => {
               </Link>
 
             ))}
-            <SearchIcon className={"my-auto"} />
+            <SearchIcon className={"my-auto ms-3"} />
           </Box>
 
           {/* Small screen display */}
@@ -148,150 +150,6 @@ const NavBar = () => {
   );
 }
 
-//Attributes display component
-//Arguments = Attributes[]
-const AttributesView = ({ attributes }: { attributes: Attribute[] }) => (
-  <Grid container spacing={{ md: 5 }}>
-    {attributes.map((attribute) =>
-      <Grid item xs={12} md={4} className={"text-center"}>
-        <h6>
-          {attribute.attribute}
-        </h6>
-        <p>
-          {attribute.description}
-        </p>
-        <Button variant="text" className="primary-2" endIcon={<ArrowForwardIcon className='primary-1' />} >Read More</Button>
-      </Grid>
-    )}
-  </Grid>
-)
-
-//Reviews display component
-//Arguments = Review[]
-const ReviewView = ({ reviews }: { reviews: Review[] }) => (
-  <Grid container >
-    <Grid container item xs={12} spacing={{ sm: 2 }} className={"text-center bg-primary-3 px-2 ps-md-4 pe-md-5 py-5"} sx={{ borderRadius: 10 }}>
-      <h2 className="w-100 mt-0">What People Think About Us</h2>
-      {reviews.map((review) => (
-        <Grid className="my-2" item xs={12} md={4} >
-          <div className="d-flex flex-wrap text-start bg-light br-15 p-3">
-            <img src={review.image_src} alt={"Person 1"} height="50" className="rounded-circle" />
-            <div className='ms-3 ' >
-              <h6 className="my-0">
-                {review.name}
-              </h6>
-              <span className="d-block" >{review.location}</span>
-            </div>
-            <p>
-              {review.description}
-            </p>
-
-          </div>
-
-        </Grid>
-      ))}
-
-    </Grid>
-  </Grid>
-);
-
-//Reviews display component
-//Arguments = Project[]
-const ProjectsView = ({ projects }: { projects: Project[] }) => {
-
-  return (
-    <Grid className={"projects-view"} container spacing={{ md: 3 }} >
-      <Grid className="p-0" item xs={12}>
-        <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
-        <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
-          It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
-        </p>
-      </Grid>
-
-      {projects.map((project, index) => (
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6}>
-          <div className=' image-container mx-md-auto'>
-            {/* Apply different classes based on the sequence  */}
-            <img className={
-              {
-                '0': "curve-top-right",
-                '1': "curve-top-left",
-                '2': "curve-bottom-right",
-                '3': "curve-bottom-left"
-              }[index % 4]
-            } src={project.image_src} alt={"Photo 1"} />
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <div>
-                <h6 className="my-0">{project.name}</h6>
-                <p className='my-0'>{project.type}</p>
-              </div>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIosIcon />
-              </IconButton>
-            </div>
-          </div>
-        </Grid>
-      ))}
-
-
-    </Grid>
-  );
-}
-
-//Statistics display component
-//Arguments = Statistic[]
-const StatisticsView = ({ statistics }: { statistics: Statistic[] }) => (
-  <Grid className='bg-primary-3 stats-view' container >
-    {statistics.map(statistic => (
-      <Grid item xs={12} md={3} className={"text-center"}>
-        <h1 className='primary-1 my-0'>{statistic.number}</h1>
-        <p className='mb-lg-0'>{statistic.text}</p>
-      </Grid>
-    ))}
-
-  </Grid>
-)
-//Article Display Component
-//Arguments = Statistic[]
-const ArticlesView = ({ articles }: { articles: Article[] }) => (
-  <Grid className="article-view" container spacing={{ md: 5 }}>
-    <Grid item xs={12} className={"text-center"}>
-      <h2 className="mb-0">Articles and News</h2>
-      <p className='mx-auto' style={{ maxWidth: "600px" }}>
-        Eiusmod velit cupidatat culpa adipisicing do id amet nisi Lorem cupidatat id pariatur. Esse laborum esse voluptate cillum in ullamco amet et ex nostrud voluptat.
-      </p>
-    </Grid>
-
-    {articles.map((article, index) => (
-      <Grid item xs={12} md={6} lg={4} className={`article-item my-2 ${(index % 3 == 1) && 'bg-primary-3 border-0'}`}>
-        <div>
-          <div className='image-view'>
-            <img src={article.image_src} alt={"Photo 5"} />
-            <span>{article.type}</span>
-          </div>
-          <h6 className='my-0'>{article.name}.</h6>
-          <div className='d-flex align-items-center mt-3 mb-4'>
-            <p className='my-0'>{article.date}</p>
-            <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-              <ArrowForwardIosIcon />
-            </IconButton>
-          </div>
-        </div>
-
-      </Grid>
-    ))}
-  </Grid>
-)
-
-const JoinDisplay = () => (
-  <Grid container>
-    <Grid item xs={12} className={"text-center bg-primary-2 text-light br-25 py-5 px-2"}>
-      <h2 className='mb-0'>Wanna join the Interno?</h2>
-      <p>Consequat aute nostrud ipsum elit irure sit culpa aliqua exercitation.</p>
-      <Button variant="contained" className="d-flex bg-primary-1 px-4 py-3  mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Contact Us</Button>
-    </Grid>
-  </Grid>
-)
 
 const Homepage = () => {
 
@@ -413,7 +271,7 @@ const Homepage = () => {
 
       {/* Next Section  */}
       <Grid container spacing={{ md: 5 }} >
-        <Grid item xs={12} lg={5}>
+        <Grid item xs={12} lg={5} className={"align-self-center"}>
           <h2 className={"text-center text-left-lg"} style={{ fontSize: "40px" }}>
             We Create The Art Of Stylish Living Stylishly
           </h2>
@@ -428,7 +286,7 @@ const Homepage = () => {
             </div>
           </Box>
 
-          <Button variant="contained" className="d-flex bg-primary-2 px-4 py-3 mt-4 mx-auto mx-xl-0" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
+          <Button variant="contained" className="d-flex bg-primary-2 px-4 py-3 mt-4 mx-auto my-3 mx-xl-0" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
 
         </Grid>
 
@@ -439,191 +297,17 @@ const Homepage = () => {
       </Grid>
 
       <ReviewView reviews={reviews} />
+
+      <Grid className="mt-3" container >
+        <Grid item xs={12} className={"text-center "}>
+          <img src={clientlogos} alt={"Clients logos"} className={"w-100"} />
+        </Grid>
+      </Grid>
       <ProjectsView projects={projects} />
       <StatisticsView statistics={statistics} />
       <ArticlesView articles={articles} />
       <JoinDisplay />
     </div>
-  );
-}
-
-const TopDisplay = ({ name, other, image_src }: { name: string, other: string, image_src: string }) => (
-  <div className={"top-display"}>
-    <img src={image_src} />
-    <div className='title-display'>
-      <h2 className='mb-0 mt-4'>{name}</h2>
-      <span>{other}</span>
-    </div>
-  </div>
-);
-
-const PricingPage = () => {
-
-  const prices: Price[] = [
-    {
-      name: "Design Advices",
-      price: 29,
-      features: ["General Living Space Advises", "Renovation Advices", "Interior Design Advices", "Furniture Reorganisation", "Up to 5 hours meeting"]
-    },
-    {
-      name: "Complete Interior",
-      price: 39,
-      features: ["Complete Home Redesign", "Interior and Exterior works", "Modular Interior Planning", "Kitchen Design", "Garages Organisation"]
-    },
-    {
-      name: "Furniture Design",
-      price: 59,
-      features: ["Furniture for Living Room", "Furniture Refurbishment", "Sofas And Armchairs", "Tables and Chairs", "Kitchens"]
-    }
-  ];
-
-  return (
-    <>
-      <TopDisplay name='Pricing & Plan' other="Home / Pricing" image_src={photo8} />
-
-      <Grid container spacing={{ md: 5 }}>
-        {prices.map((price, index) =>
-          <Grid item xs={12} sm={6} lg={4} className={"text-center "}>
-            <div className='bg-primary-3 br-15 py-4 mx-1 mt-2 shadow'>
-              <h4 className='my-0'>{price.name}</h4>
-              <h6 className="my-0">$<span className={(index % 3 == 1) ? 'primary-1' : ''} style={{ fontSize: "60px" }}>{price.price}</span></h6>
-              <h6 className='my-0'>/Month</h6>
-              {/* Pick different styles based on sequence */}
-              <div className={`${(index % 3 == 1) ? 'border-top-primary-2' : 'border-top-primary-1'} position-relative mt-4 pt-3`} >
-                {(index % 3 == 1) && <div className='pricing-badge'>Most Popular Plans</div>}
-                {price.features.map((feature) => (
-                  <p>
-                    {feature}
-                  </p>
-                ))}
-              </div>
-              {
-                (index % 3 == 1) ?
-                  <Button variant="contained" className="bg-primary-2 py-3 px-4 mx-auto shadow" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Started </Button>
-                  :
-                  <Button variant="contained" className="bg-primary-1 py-3 px-4 mx-auto" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Get Started </Button>
-              }
-            </div>
-          </Grid>
-        )}
-      </Grid>
-    </>
-  );
-}
-
-
-const ServicesPage = () => {
-
-  const attributes: Attribute[] = [
-    {
-      attribute: "Project Plan",
-      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-    },
-    {
-      attribute: "Interior Work",
-      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-    },
-    {
-      attribute: "Realization",
-      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-    },
-    {
-      attribute: "Project Plan",
-      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-    },
-    {
-      attribute: "Interior Work",
-      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-    },
-    {
-      attribute: "Realization",
-      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-    },
-  ];
-
-
-  const services: {
-    image_src: string,
-    icon_src: string,
-    name: string,
-    description: string
-  }[] = [{
-    image_src: photo1,
-    icon_src: photo1,
-    name: "Projects And Details",
-    description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-  },
-  {
-    image_src: photo1,
-    icon_src: photo1,
-    name: "Projects And Details",
-    description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
-  }
-    ];
-
-  return (
-    <>
-      <TopDisplay name='Services' other="Home / Services" image_src={photo9} />
-
-      <AttributesView attributes={attributes} />
-      <Grid container >
-        <Grid className="services-view px-0 pe-3" container spacing={{ xs: 2, md: 5 }}>
-          <Grid item xs={12} className={"text-center"}>
-            <h2 className="mb-0">How we work</h2>
-            <p className='mx-auto' style={{ maxWidth: "600px" }}>
-              Reprehenderit et aliqua consectetur sit mollit pariatur consectetur qui veniam ut quis velit incididunt.
-            </p>
-          </Grid>
-
-          {services.map((service, index) => (
-            <>
-              {/* Render the other way if index is even */}
-              {index % 2 === 0 ?
-                (<>
-                  <Grid item xs={12} md={6}>
-                    <img className={"services-curve-img"} src={service.image_src} alt="Image" />
-                  </Grid>
-
-                  <Grid item xs={12} md={6} className={"align-self-center"}>
-                    <div className='mx-auto' style={{ maxWidth: "350px" }} >
-                      <div className={"d-flex align-items-center"}>
-                        <img src={service.icon_src} height="80" alt="An icon" />
-                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index + 1}</h1>
-                      </div>
-                      <h4 className="mb-0">{service.name}</h4>
-                      <p>{service.description}</p>
-                    </div>
-
-                  </Grid>
-                </>)
-                :
-                (<>
-                  <Grid item xs={12} md={6} className={"align-self-center"}>
-                    <div className='mx-auto' style={{ maxWidth: "350px" }} >
-                      <div className={"d-flex align-items-center"}>
-                        <img src={service.icon_src} height="80" alt="An icon" />
-                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index + 1}</h1>
-                      </div>
-                      <h4 className="mb-0">{service.name}</h4>
-                      <p>{service.description}</p>
-                    </div>
-
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <img className={"services-curve-img"} src={service.image_src} alt="Image" />
-                  </Grid>
-                </>)
-
-              }
-
-            </>
-          ))}
-        </Grid>
-
-
-      </Grid>
-      <JoinDisplay />
-    </>
   );
 }
 
@@ -753,6 +437,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
       </Routes>
       <Footer />
     </Router>
