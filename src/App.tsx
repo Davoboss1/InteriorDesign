@@ -78,7 +78,7 @@ const NavBar = () => {
     <AppBar position="static" className={"main-navbar"} >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ ml: { xs: "5%", sm: "15%" }, mr: { xs: "5%", sm: "15%" } }}>
-          <Link to={"/"}>
+          <Link className={"d-flex align-items-center"} to={"/"}>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
             <Typography
               variant="h6"
@@ -336,7 +336,7 @@ const Footer = () => {
   return (
     <footer>
       <Grid container spacing={{ md: 3 }}>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} sm={5}>
           <div className='d-flex align-items-center'>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
             <Typography
@@ -365,9 +365,9 @@ const Footer = () => {
 
         </Grid>
 
-        <Grid item xs={6} md={2}>
+        <Grid item xs={6} sm={2}>
           <div>
-            <h6>
+            <h6 className={"mb-3 mb-md-4 mt-4"}>
               Pages
             </h6>
 
@@ -393,9 +393,9 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item xs={6} md={2}>
+        <Grid item xs={6} sm={2}>
           <div>
-            <h6>
+            <h6 className={"mb-3 mb-md-4 mt-4"}>
               Services
             </h6>
 
@@ -421,9 +421,9 @@ const Footer = () => {
           </div>
         </Grid>
 
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} sm={3}>
           <div>
-            <h6>
+            <h6 className={"mb-0 mb-md-4 mt-4"}>
               Contact
             </h6>
 
