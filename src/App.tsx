@@ -22,7 +22,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import SearchIcon from '@mui/icons-material/SearchOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -43,6 +43,8 @@ import photo4 from "./assets/Photo3.png";
 import photo5 from "./assets/Photo4.png";
 import photo6 from "./assets/Photo5.png";
 import photo7 from "./assets/Photo6.png";
+import photo8 from "./assets/photo7.jpg";
+import photo9 from "./assets/Photo8.jpg";
 import person1 from "./assets/person1.jpg";
 import person2 from "./assets/person2.jpg";
 import person3 from "./assets/person3.jpg";
@@ -52,7 +54,7 @@ import { Article, Attribute, Price, Project, Review, Statistic } from "./types";
 
 const NavBar = () => {
 
-  const pages = [{ url: '/', name: 'Home' }, { url: '/pricing', name: 'Pricing' }, { url: '/', name: 'Services' }, { url: '/', name: 'Project' }, { url: '/', name: 'Blog' }, { url: '/', name: 'Contact' }];
+  const pages = [{ url: '/', name: 'Home' }, { url: '/pricing', name: 'Pricing' }, { url: '/services', name: 'Services' }, { url: '/', name: 'Project' }, { url: '/', name: 'Blog' }, { url: '/', name: 'Contact' }];
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -224,7 +226,7 @@ const ProjectsView = ({ projects }: { projects: Project[] }) => {
                 <p className='my-0'>{project.type}</p>
               </div>
               <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIcon />
+                <ArrowForwardIosIcon />
               </IconButton>
             </div>
           </div>
@@ -271,7 +273,7 @@ const ArticlesView = ({ articles }: { articles: Article[] }) => (
           <div className='d-flex align-items-center mt-3 mb-4'>
             <p className='my-0'>{article.date}</p>
             <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-              <ArrowForwardIcon />
+              <ArrowForwardIosIcon />
             </IconButton>
           </div>
         </div>
@@ -445,179 +447,258 @@ const Homepage = () => {
   );
 }
 
+const TopDisplay = ({ name, other, image_src }: { name: string, other: string, image_src: string }) => (
+  <div className={"top-display"}>
+    <img src={image_src} />
+    <div className='title-display'>
+      <h2 className='mb-0 mt-4'>{name}</h2>
+      <span>{other}</span>
+    </div>
+  </div>
+);
+
 const PricingPage = () => {
-  const prices : Price[] = [
+
+  const prices: Price[] = [
     {
       name: "Design Advices",
       price: 29,
-      features: ["General Living Space Advises", "Renovation Advices", "Interior Design Advices","Furniture Reorganisation","Up to 5 hours meeting"]
+      features: ["General Living Space Advises", "Renovation Advices", "Interior Design Advices", "Furniture Reorganisation", "Up to 5 hours meeting"]
     },
     {
       name: "Complete Interior",
       price: 39,
-      features: ["Complete Home Redesign", "Interior and Exterior works", "Modular Interior Planning","Kitchen Design","Garages Organisation"]
+      features: ["Complete Home Redesign", "Interior and Exterior works", "Modular Interior Planning", "Kitchen Design", "Garages Organisation"]
     },
     {
       name: "Furniture Design",
       price: 59,
-      features: ["Furniture for Living Room", "Furniture Refurbishment",  "Interior Design Advices","Sofas And Armchairs", "Tables and Chairs","Kitchens"]
+      features: ["Furniture for Living Room", "Furniture Refurbishment", "Sofas And Armchairs", "Tables and Chairs", "Kitchens"]
     }
   ];
+
   return (
-    <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
-      {prices.map((price) =>
-        <Grid item xs={12} sm={6} lg={4} className={"text-center align-self-stretch"}>
-            <div className='bg-primary-3 py-5 br-15'>
+    <>
+      <TopDisplay name='Pricing & Plan' other="Home / Pricing" image_src={photo8} />
+
+      <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
+        {prices.map((price, index) =>
+          <Grid item xs={12} sm={6} lg={4} className={"text-center "}>
+            <div className='bg-primary-3 br-15 py-4 mx-1 mt-2 shadow'>
               <h4 className='my-0'>{price.name}</h4>
-              <h6 className="my-0">$<span style={{fontSize: "60px"}}>{price.price}</span></h6>
+              <h6 className="my-0">$<span className={(index % 3 == 1) ? 'primary-1' : ''} style={{ fontSize: "60px" }}>{price.price}</span></h6>
               <h6 className='my-0'>/Month</h6>
-              <div className='border-top-primary-1 mt-4 pt-3 pb-3' >
-                {price.features.map((feature)=>(
+              {/* Pick different styles based on sequence */}
+              <div className={`${(index % 3 == 1) ? 'border-top-primary-2' : 'border-top-primary-1'} position-relative mt-4 pt-3`} >
+                {(index % 3 == 1) && <div className='pricing-badge'>Most Popular Plans</div>}
+                {price.features.map((feature) => (
                   <p>
                     {feature}
                   </p>
                 ))}
-
               </div>
-              <Button variant="contained" className="bg-primary-1 px-4 py-3 mt-auto mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Get Started </Button>
-              
+              {
+                (index % 3 == 1) ?
+                  <Button variant="contained" className="bg-primary-2 py-3 px-4 mx-auto shadow" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Started </Button>
+                  :
+                  <Button variant="contained" className="bg-primary-1 py-3 px-4 mx-auto" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Get Started </Button>
+              }
             </div>
-        </Grid>
-      )}
-    </Grid>
+          </Grid>
+        )}
+      </Grid>
+    </>
   );
 }
 
+
+const ServicesPage = () => {
+
+  const attributes: Attribute[] = [
+    {
+      attribute: "Project Plan",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Interior Work",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Realization",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Project Plan",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Interior Work",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+    {
+      attribute: "Realization",
+      description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+    },
+  ];
+
+  return (
+    <>
+      <TopDisplay name='Services' other="Home / Services" image_src={photo9} />
+
+      <AttributesView attributes={attributes} />
+
+      <Grid className="services-view" container p={"5% 15%"} spacing={{ md: 5 }}>
+        <Grid item xs={12} className={"text-center"}>
+          <h2 className="mb-0">How we work</h2>
+          <p className='mx-auto' style={{ maxWidth: "600px" }}>
+            Reprehenderit et aliqua consectetur sit mollit pariatur consectetur qui veniam ut quis velit incididunt.
+          </p>
+        </Grid>
+
+        <Grid item xs={12} md={6} className={"text-center"}>
+
+        </Grid>
+
+        <Grid item xs={12} md={6} className={"text-center"}>
+
+        </Grid>
+      </Grid>
+
+        <JoinDisplay />
+      </>
+      );
+}
 
 const Footer = () => {
 
   return (
-    <footer>
-      <Grid container p={"5% 15%"} spacing={{ md: 3 }}>
-        <Grid item xs={12} md={5}>
-          <div className='d-flex align-items-center'>
-            <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
-            <Typography
-              className='primary-2'
-              variant="h4"
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                ml: 2,
-                textDecoration: 'none',
-                fontFamily: "'DM Serif Display', serif"
-              }}
-            >
-              Interno
-            </Typography>
-          </div>
-          <p>Non velit cillum ut duis magna reprehenderit amet reprehenderit magna sunt duis cupidatat eu et.</p>
-          <div className="d-flex justify-content-around w-50">
-            <FacebookIcon />
-            <TwitterIcon />
-            <LinkedInIcon />
-            <InstagramIcon />
+      <footer>
+        <Grid container p={"5% 15%"} spacing={{ md: 3 }}>
+          <Grid item xs={12} md={5}>
+            <div className='d-flex align-items-center'>
+              <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
+              <Typography
+                className='primary-2'
+                variant="h4"
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  ml: 2,
+                  textDecoration: 'none',
+                  fontFamily: "'DM Serif Display', serif"
+                }}
+              >
+                Interno
+              </Typography>
+            </div>
+            <p>Non velit cillum ut duis magna reprehenderit amet reprehenderit magna sunt duis cupidatat eu et.</p>
+            <div className="d-flex justify-content-around w-50">
+              <FacebookIcon />
+              <TwitterIcon />
+              <LinkedInIcon />
+              <InstagramIcon />
 
-          </div>
+            </div>
+
+          </Grid>
+
+          <Grid item xs={6} md={2}>
+            <div>
+              <h6>
+                Pages
+              </h6>
+
+              <a href="/">
+                About Us
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Our Projects
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Our Team
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Contact Us
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Services
+              </a>
+            </div>
+          </Grid>
+
+          <Grid item xs={6} md={2}>
+            <div>
+              <h6>
+                Services
+              </h6>
+
+              <a href="/">
+                Kitchen
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Living Area
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Bathroom
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Dining Hall
+              </a>
+
+              <a className={"mt-4"} href="/">
+                Bedroom
+              </a>
+            </div>
+          </Grid>
+
+          <Grid item xs={12} md={3}>
+            <div>
+              <h6>
+                Contact
+              </h6>
+
+              <p>
+                55 East Birchwood Ave. <br />
+                Brookyln, New York 11201
+              </p>
+
+              <p>
+                Contact@Interno.com
+              </p>
+
+              <p>
+                (123) 456 - 7890
+              </p>
+
+            </div>
+          </Grid>
 
         </Grid>
-
-        <Grid item xs={6} md={2}>
-          <div>
-            <h6>
-              Pages
-            </h6>
-
-            <a href="/">
-              About Us
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Our Projects
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Our Team
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Contact Us
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Services
-            </a>
-          </div>
-        </Grid>
-
-        <Grid item xs={6} md={2}>
-          <div>
-            <h6>
-              Services
-            </h6>
-
-            <a href="/">
-              Kitchen
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Living Area
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Bathroom
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Dining Hall
-            </a>
-
-            <a className={"mt-4"} href="/">
-              Bedroom
-            </a>
-          </div>
-        </Grid>
-
-        <Grid item xs={12} md={3}>
-          <div>
-            <h6>
-              Contact
-            </h6>
-
-            <p>
-              55 East Birchwood Ave. <br />
-              Brookyln, New York 11201
-            </p>
-
-            <p>
-              Contact@Interno.com
-            </p>
-
-            <p>
-              (123) 456 - 7890
-            </p>
-
-          </div>
-        </Grid>
-
-      </Grid>
-    </footer>
-  );
+      </footer>
+      );
 }
 
-function App() {
+      function App() {
 
   return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/pricing" element={<PricingPage />} />
-      </Routes>
-      <Footer />
-    </Router>
-  )
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+      )
 }
 
-export default App;
+      export default App;

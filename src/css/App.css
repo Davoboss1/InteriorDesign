@@ -75,6 +75,10 @@ h6 {
     border-top: 1px solid #CDA274;
 }
 
+.border-top-primary-2{
+    border-top: 1px solid #292F36;
+}
+
 .main-navbar {
     background-color: white;
     color: #292F36;
@@ -260,4 +264,42 @@ footer a {
     .article-view>.article-item .image-view img {
         position: static;
     }
+}
+
+.pricing-badge{
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #292F36;
+    color: white;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.top-display{
+    position: relative;
+}
+
+.top-display img{
+    height: 300px;
+    width: 100%;
+}
+
+.top-display .title-display{
+    position: absolute;
+    background-color: white;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    height: 130px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
 }
