@@ -151,7 +151,7 @@ const NavBar = () => {
 //Attributes display component
 //Arguments = Attributes[]
 const AttributesView = ({ attributes }: { attributes: Attribute[] }) => (
-  <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
+  <Grid container spacing={{ md: 5 }}>
     {attributes.map((attribute) =>
       <Grid item xs={12} md={4} className={"text-center"}>
         <h6>
@@ -169,7 +169,7 @@ const AttributesView = ({ attributes }: { attributes: Attribute[] }) => (
 //Reviews display component
 //Arguments = Review[]
 const ReviewView = ({ reviews }: { reviews: Review[] }) => (
-  <Grid container p={{ xs: "5%", sm: "10% 15%" }} >
+  <Grid container >
     <Grid container item xs={12} spacing={{ sm: 2 }} className={"text-center bg-primary-3 px-2 ps-md-4 pe-md-5 py-5"} sx={{ borderRadius: 10 }}>
       <h2 className="w-100 mt-0">What People Think About Us</h2>
       {reviews.map((review) => (
@@ -200,7 +200,7 @@ const ReviewView = ({ reviews }: { reviews: Review[] }) => (
 const ProjectsView = ({ projects }: { projects: Project[] }) => {
 
   return (
-    <Grid className={"projects-view"} container p={"5% 15%"} spacing={{ md: 3 }} >
+    <Grid className={"projects-view"} container spacing={{ md: 3 }} >
       <Grid className="p-0" item xs={12}>
         <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
         <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
@@ -209,7 +209,7 @@ const ProjectsView = ({ projects }: { projects: Project[] }) => {
       </Grid>
 
       {projects.map((project, index) => (
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6} p={5}>
+        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6}>
           <div className=' image-container mx-md-auto'>
             {/* Apply different classes based on the sequence  */}
             <img className={
@@ -241,7 +241,7 @@ const ProjectsView = ({ projects }: { projects: Project[] }) => {
 //Statistics display component
 //Arguments = Statistic[]
 const StatisticsView = ({ statistics }: { statistics: Statistic[] }) => (
-  <Grid className='bg-primary-3 stats-view' container p={"7% 20%"} >
+  <Grid className='bg-primary-3 stats-view' container >
     {statistics.map(statistic => (
       <Grid item xs={12} md={3} className={"text-center"}>
         <h1 className='primary-1 my-0'>{statistic.number}</h1>
@@ -254,7 +254,7 @@ const StatisticsView = ({ statistics }: { statistics: Statistic[] }) => (
 //Article Display Component
 //Arguments = Statistic[]
 const ArticlesView = ({ articles }: { articles: Article[] }) => (
-  <Grid className="article-view" container p={"5% 15%"} spacing={{ md: 5 }}>
+  <Grid className="article-view" container spacing={{ md: 5 }}>
     <Grid item xs={12} className={"text-center"}>
       <h2 className="mb-0">Articles and News</h2>
       <p className='mx-auto' style={{ maxWidth: "600px" }}>
@@ -284,8 +284,8 @@ const ArticlesView = ({ articles }: { articles: Article[] }) => (
 )
 
 const JoinDisplay = () => (
-  <Grid container p={"5% 15%"}>
-    <Grid item xs={12} className={"text-center bg-primary-2 text-light br-25 py-5"}>
+  <Grid container>
+    <Grid item xs={12} className={"text-center bg-primary-2 text-light br-25 py-5 px-2"}>
       <h2 className='mb-0'>Wanna join the Interno?</h2>
       <p>Consequat aute nostrud ipsum elit irure sit culpa aliqua exercitation.</p>
       <Button variant="contained" className="d-flex bg-primary-1 px-4 py-3  mx-auto" sx={{ borderRadius: 4 }} endIcon={<ArrowForwardIcon className='primary-2' />} > Contact Us</Button>
@@ -412,7 +412,7 @@ const Homepage = () => {
       <AttributesView attributes={attributes} />
 
       {/* Next Section  */}
-      <Grid container p={"5% 15%"} spacing={{ md: 5 }} >
+      <Grid container spacing={{ md: 5 }} >
         <Grid item xs={12} lg={5}>
           <h2 className={"text-center text-left-lg"} style={{ fontSize: "40px" }}>
             We Create The Art Of Stylish Living Stylishly
@@ -432,7 +432,7 @@ const Homepage = () => {
 
         </Grid>
 
-        <Grid item xs={12} lg={7} p={3} >
+        <Grid item xs={12} lg={7} >
           <img className='double-curve-img mx-auto' src={photo} alt={"Passage"} />
         </Grid>
 
@@ -481,7 +481,7 @@ const PricingPage = () => {
     <>
       <TopDisplay name='Pricing & Plan' other="Home / Pricing" image_src={photo8} />
 
-      <Grid container p={"5% 15%"} spacing={{ md: 5 }}>
+      <Grid container spacing={{ md: 5 }}>
         {prices.map((price, index) =>
           <Grid item xs={12} sm={6} lg={4} className={"text-center "}>
             <div className='bg-primary-3 br-15 py-4 mx-1 mt-2 shadow'>
@@ -566,9 +566,8 @@ const ServicesPage = () => {
       <TopDisplay name='Services' other="Home / Services" image_src={photo9} />
 
       <AttributesView attributes={attributes} />
-      <Box p={"5% 15%"}>
-        <Grid className="services-view pe-3 pe-md-5" container spacing={{ xs: 3, md: 5 }}>
-
+      <Grid container >
+        <Grid className="services-view px-0 pe-3" container spacing={{ xs: 2, md: 5 }}>
           <Grid item xs={12} className={"text-center"}>
             <h2 className="mb-0">How we work</h2>
             <p className='mx-auto' style={{ maxWidth: "600px" }}>
@@ -589,7 +588,7 @@ const ServicesPage = () => {
                     <div className='mx-auto' style={{ maxWidth: "350px" }} >
                       <div className={"d-flex align-items-center"}>
                         <img src={service.icon_src} height="80" alt="An icon" />
-                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index+1}</h1>
+                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index + 1}</h1>
                       </div>
                       <h4 className="mb-0">{service.name}</h4>
                       <p>{service.description}</p>
@@ -603,7 +602,7 @@ const ServicesPage = () => {
                     <div className='mx-auto' style={{ maxWidth: "350px" }} >
                       <div className={"d-flex align-items-center"}>
                         <img src={service.icon_src} height="80" alt="An icon" />
-                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index+1}</h1>
+                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index + 1}</h1>
                       </div>
                       <h4 className="mb-0">{service.name}</h4>
                       <p>{service.description}</p>
@@ -619,11 +618,10 @@ const ServicesPage = () => {
 
             </>
           ))}
-
         </Grid>
-      </Box>
 
 
+      </Grid>
       <JoinDisplay />
     </>
   );
@@ -633,7 +631,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <Grid container p={"5% 15%"} spacing={{ md: 3 }}>
+      <Grid container spacing={{ md: 3 }}>
         <Grid item xs={12} md={5}>
           <div className='d-flex align-items-center'>
             <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
