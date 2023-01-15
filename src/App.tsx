@@ -541,164 +541,224 @@ const ServicesPage = () => {
     },
   ];
 
+
+  const services: {
+    image_src: string,
+    icon_src: string,
+    name: string,
+    description: string
+  }[] = [{
+    image_src: photo1,
+    icon_src: photo1,
+    name: "Projects And Details",
+    description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+  },
+  {
+    image_src: photo1,
+    icon_src: photo1,
+    name: "Projects And Details",
+    description: "Qui do cupidatat tempor irure velit aute nulla officia nostrud elit incididunt qui culpa velit."
+  }
+    ];
+
   return (
     <>
       <TopDisplay name='Services' other="Home / Services" image_src={photo9} />
 
       <AttributesView attributes={attributes} />
+      <Box p={"5% 15%"}>
+        <Grid className="services-view pe-3 pe-md-5" container spacing={{ xs: 3, md: 5 }}>
 
-      <Grid className="services-view" container p={"5% 15%"} spacing={{ md: 5 }}>
-        <Grid item xs={12} className={"text-center"}>
-          <h2 className="mb-0">How we work</h2>
-          <p className='mx-auto' style={{ maxWidth: "600px" }}>
-            Reprehenderit et aliqua consectetur sit mollit pariatur consectetur qui veniam ut quis velit incididunt.
-          </p>
+          <Grid item xs={12} className={"text-center"}>
+            <h2 className="mb-0">How we work</h2>
+            <p className='mx-auto' style={{ maxWidth: "600px" }}>
+              Reprehenderit et aliqua consectetur sit mollit pariatur consectetur qui veniam ut quis velit incididunt.
+            </p>
+          </Grid>
+
+          {services.map((service, index) => (
+            <>
+              {/* Render the other way if index is even */}
+              {index % 2 === 0 ?
+                (<>
+                  <Grid item xs={12} md={6}>
+                    <img className={"services-curve-img"} src={service.image_src} alt="Image" />
+                  </Grid>
+
+                  <Grid item xs={12} md={6} className={"align-self-center"}>
+                    <div className='mx-auto' style={{ maxWidth: "350px" }} >
+                      <div className={"d-flex align-items-center"}>
+                        <img src={service.icon_src} height="80" alt="An icon" />
+                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index+1}</h1>
+                      </div>
+                      <h4 className="mb-0">{service.name}</h4>
+                      <p>{service.description}</p>
+                    </div>
+
+                  </Grid>
+                </>)
+                :
+                (<>
+                  <Grid item xs={12} md={6} className={"align-self-center"}>
+                    <div className='mx-auto' style={{ maxWidth: "350px" }} >
+                      <div className={"d-flex align-items-center"}>
+                        <img src={service.icon_src} height="80" alt="An icon" />
+                        <h1 className={"ms-auto text-light my-0"} style={{ fontSize: "80px" }}>0{index+1}</h1>
+                      </div>
+                      <h4 className="mb-0">{service.name}</h4>
+                      <p>{service.description}</p>
+                    </div>
+
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <img className={"services-curve-img"} src={service.image_src} alt="Image" />
+                  </Grid>
+                </>)
+
+              }
+
+            </>
+          ))}
+
         </Grid>
+      </Box>
 
-        <Grid item xs={12} md={6} className={"text-center"}>
 
-        </Grid>
-
-        <Grid item xs={12} md={6} className={"text-center"}>
-
-        </Grid>
-      </Grid>
-
-        <JoinDisplay />
-      </>
-      );
+      <JoinDisplay />
+    </>
+  );
 }
 
 const Footer = () => {
 
   return (
-      <footer>
-        <Grid container p={"5% 15%"} spacing={{ md: 3 }}>
-          <Grid item xs={12} md={5}>
-            <div className='d-flex align-items-center'>
-              <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
-              <Typography
-                className='primary-2'
-                variant="h4"
-                component="a"
-                href="/"
-                sx={{
-                  mr: 2,
-                  ml: 2,
-                  textDecoration: 'none',
-                  fontFamily: "'DM Serif Display', serif"
-                }}
-              >
-                Interno
-              </Typography>
-            </div>
-            <p>Non velit cillum ut duis magna reprehenderit amet reprehenderit magna sunt duis cupidatat eu et.</p>
-            <div className="d-flex justify-content-around w-50">
-              <FacebookIcon />
-              <TwitterIcon />
-              <LinkedInIcon />
-              <InstagramIcon />
+    <footer>
+      <Grid container p={"5% 15%"} spacing={{ md: 3 }}>
+        <Grid item xs={12} md={5}>
+          <div className='d-flex align-items-center'>
+            <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
+            <Typography
+              className='primary-2'
+              variant="h4"
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                ml: 2,
+                textDecoration: 'none',
+                fontFamily: "'DM Serif Display', serif"
+              }}
+            >
+              Interno
+            </Typography>
+          </div>
+          <p>Non velit cillum ut duis magna reprehenderit amet reprehenderit magna sunt duis cupidatat eu et.</p>
+          <div className="d-flex justify-content-around w-50">
+            <FacebookIcon />
+            <TwitterIcon />
+            <LinkedInIcon />
+            <InstagramIcon />
 
-            </div>
-
-          </Grid>
-
-          <Grid item xs={6} md={2}>
-            <div>
-              <h6>
-                Pages
-              </h6>
-
-              <a href="/">
-                About Us
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Our Projects
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Our Team
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Contact Us
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Services
-              </a>
-            </div>
-          </Grid>
-
-          <Grid item xs={6} md={2}>
-            <div>
-              <h6>
-                Services
-              </h6>
-
-              <a href="/">
-                Kitchen
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Living Area
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Bathroom
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Dining Hall
-              </a>
-
-              <a className={"mt-4"} href="/">
-                Bedroom
-              </a>
-            </div>
-          </Grid>
-
-          <Grid item xs={12} md={3}>
-            <div>
-              <h6>
-                Contact
-              </h6>
-
-              <p>
-                55 East Birchwood Ave. <br />
-                Brookyln, New York 11201
-              </p>
-
-              <p>
-                Contact@Interno.com
-              </p>
-
-              <p>
-                (123) 456 - 7890
-              </p>
-
-            </div>
-          </Grid>
+          </div>
 
         </Grid>
-      </footer>
-      );
+
+        <Grid item xs={6} md={2}>
+          <div>
+            <h6>
+              Pages
+            </h6>
+
+            <a href="/">
+              About Us
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Our Projects
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Our Team
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Contact Us
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Services
+            </a>
+          </div>
+        </Grid>
+
+        <Grid item xs={6} md={2}>
+          <div>
+            <h6>
+              Services
+            </h6>
+
+            <a href="/">
+              Kitchen
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Living Area
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Bathroom
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Dining Hall
+            </a>
+
+            <a className={"mt-4"} href="/">
+              Bedroom
+            </a>
+          </div>
+        </Grid>
+
+        <Grid item xs={12} md={3}>
+          <div>
+            <h6>
+              Contact
+            </h6>
+
+            <p>
+              55 East Birchwood Ave. <br />
+              Brookyln, New York 11201
+            </p>
+
+            <p>
+              Contact@Interno.com
+            </p>
+
+            <p>
+              (123) 456 - 7890
+            </p>
+
+          </div>
+        </Grid>
+
+      </Grid>
+    </footer>
+  );
 }
 
-      function App() {
+function App() {
 
   return (
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-        </Routes>
-        <Footer />
-      </Router>
-      )
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/services" element={<ServicesPage />} />
+      </Routes>
+      <Footer />
+    </Router>
+  )
 }
 
-      export default App;
+export default App;
