@@ -140,13 +140,15 @@ const NavBar = () => {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
+              className={"dropdown"}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
+              
             >
               {pages.map((page) => (
                 <Link to={page.url}>
-                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <MenuItem key={page.name} className={"px-4"} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center" >{page.name}</Typography>
                   </MenuItem>
                 </Link>
