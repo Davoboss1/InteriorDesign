@@ -6,6 +6,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+import Zoom from "react-reveal/Zoom";
+import Slide from "react-reveal/Slide";
+
+
 // Material ui imports
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -29,8 +34,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 
 //Css imports
-import "./css/bootstrap-utilities.min.css"
-import "./css/App.css"
+import "./css/bootstrap-utilities.min.css";
+import "./css/App.css";
 
 //Images import
 import logo from "./assets/Logo.svg";
@@ -73,20 +78,22 @@ const NavBar = () => {
     <AppBar position="static" className={"main-navbar"} >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ ml: { xs: "5%", sm: "15%" }, mr: { xs: "5%", sm: "15%" } }}>
-          <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
-          <Typography
-            variant="h6"
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              ml: 2,
-              textDecoration: 'none',
-              fontFamily: "'DM Serif Display', serif"
-            }}
-          >
-            Interno
-          </Typography>
+          <Link to={"/"}>
+            <img src={logo} alt={"Inferno Logo"} height="24" width="24" />
+            <Typography
+              variant="h6"
+              component="a"
+              sx={{
+                mr: 2,
+                ml: 2,
+                textDecoration: 'none',
+                fontFamily: "'DM Serif Display', serif"
+              }}
+            >
+              Interno
+            </Typography>
+          </Link>
+
 
           <Box className='d-none ms-auto d-md-flex'>
             {pages.map((page) => (
@@ -101,7 +108,10 @@ const NavBar = () => {
               </Link>
 
             ))}
-            <SearchIcon className={"my-auto ms-3"} />
+            <IconButton className={"my-auto ms-3"}>
+              <SearchIcon />
+
+            </IconButton>
           </Box>
 
           {/* Small screen display */}
@@ -257,52 +267,62 @@ const Homepage = () => {
     <div>
 
       <div className='top-view'>
-        <div className='my-auto'>
-          <h1>
-            Let Your Home Be Unique
-          </h1>
-          <p>
-            Duis eiusmod officia eu officia minim in aliquip ea deserunt non velit veniam ipsum mollit.
-          </p>
-        </div>
+        <Zoom cascade>
+          <div className='my-auto'>
+            <h1>
+              Let Your Home Be Unique
+            </h1>
+            <p>
+              Duis eiusmod officia eu officia minim in aliquip ea deserunt non velit veniam ipsum mollit.
+            </p>
+          </div>
+        </Zoom>
+
+
+
       </div>
 
       <AttributesView attributes={attributes} />
 
       {/* Next Section  */}
-      <Grid container spacing={{ md: 5 }} >
-        <Grid item xs={12} lg={5} className={"align-self-center"}>
-          <h2 className={"text-center text-left-lg"} style={{ fontSize: "40px" }}>
-            We Create The Art Of Stylish Living Stylishly
-          </h2>
-          <p className={"text-center text-left-lg"}>
-            It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points of using that it  has a more or less normal.
-          </p>
-          <Box className="mt-4 d-flex align-items-center justify-content-center justify-content-start-lg">
-            <LocalPhoneOutlinedIcon className="bg-primary-3 primary-1 p-3 rounded-circle" sx={{ fontSize: 40 }} />
-            <div className='d-flex flex-column ms-3'>
-              <b>0123456789</b>
-              <span>Call us Anytime</span>
-            </div>
-          </Box>
+      <Zoom duration={1500} >
+        <Grid container spacing={{ md: 5 }} >
+          <Grid item xs={12} lg={5} className={"align-self-center"}>
+            <h2 className={"text-center text-left-lg"} style={{ fontSize: "40px" }}>
+              We Create The Art Of Stylish Living Stylishly
+            </h2>
+            <p className={"text-center text-left-lg"}>
+              It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points of using that it  has a more or less normal.
+            </p>
+            <Box className="mt-4 d-flex align-items-center justify-content-center justify-content-start-lg">
+              <LocalPhoneOutlinedIcon className="bg-primary-3 primary-1 p-3 rounded-circle" sx={{ fontSize: 40 }} />
+              <div className='d-flex flex-column ms-3'>
+                <b>0123456789</b>
+                <span>Call us Anytime</span>
+              </div>
+            </Box>
 
-          <Button variant="contained" className="d-flex bg-primary-2 px-4 py-3 mt-4 mx-auto my-3 mx-xl-0" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
+            <Button variant="contained" className="d-flex bg-primary-2 px-4 py-3 mt-4 mx-auto my-3 mx-xl-0" sx={{ borderRadius: 3 }} endIcon={<ArrowForwardIcon className='primary-1' />} > Get Free Estimate</Button>
+
+          </Grid>
+
+          <Grid item xs={12} lg={7} >
+            <img className='double-curve-img mx-auto' src={photo} alt={"Passage"} />
+          </Grid>
 
         </Grid>
-
-        <Grid item xs={12} lg={7} >
-          <img className='double-curve-img mx-auto' src={photo} alt={"Passage"} />
-        </Grid>
-
-      </Grid>
+      </Zoom>
 
       <ReviewView reviews={reviews} />
 
-      <Grid className="mt-3" container >
-        <Grid item xs={12} className={"text-center "}>
-          <img src={clientlogos} alt={"Clients logos"} className={"w-100"} />
+      <Slide duration={1500} left >
+        <Grid className="mt-3" container >
+          <Grid item xs={12} className={"text-center "}>
+            <img src={clientlogos} alt={"Clients logos"} className={"w-100"} />
+          </Grid>
         </Grid>
-      </Grid>
+      </Slide>
+
       <ProjectsView projects={projects} />
       <StatisticsView statistics={statistics} />
       <ArticlesView articles={articles} />

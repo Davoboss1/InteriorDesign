@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Fade from "react-reveal/Fade";
 
 //Images import
 import photo1 from "./assets/projects-1.png";
@@ -187,41 +188,44 @@ const ProjectsPage = () => {
 const ProjectsView = ({ projects }: { projects: Project[] }) => {
 
   return (
-    <Grid className={"projects-view"} container spacing={{ md: 3 }} >
-      <Grid className="p-0" item xs={12}>
-        <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
-        <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
-          It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
-        </p>
-      </Grid>
-
-      {projects.map((project, index) => (
-        <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6}>
-          <div className=' image-container mx-md-auto'>
-            {/* Apply different classes based on the sequence  */}
-            <img className={
-              {
-                '0': "curve-top-right",
-                '1': "curve-top-left",
-                '2': "curve-bottom-right",
-                '3': "curve-bottom-left"
-              }[index % 4]
-            } src={project.image_src} alt={"Photo 1"} />
-            <div className='d-flex align-items-center mt-3 mb-4'>
-              <div>
-                <h6 className="my-0">{project.name}</h6>
-                <p className='my-0'>{project.type}</p>
-              </div>
-              <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
-                <ArrowForwardIosIcon />
-              </IconButton>
-            </div>
-          </div>
+    <Fade duration={1500} cascade>
+      <Grid className={"projects-view"} container spacing={{ md: 3 }} >
+        <Grid className="p-0" item xs={12}>
+          <h2 className={"text-center mb-0"}>Follow Our Projects</h2>
+          <p className={"mx-auto text-center mt-2"} style={{ maxWidth: "550px" }}>
+            It is a long established fact that a reader will be distracted by the of readable content of a page when looking at its layout the points.
+          </p>
         </Grid>
-      ))}
+
+        {projects.map((project, index) => (
+          <Grid className={"d-flex flex-column p-1"} item xs={12} sm={6}>
+            <div className=' image-container mx-md-auto'>
+              {/* Apply different classes based on the sequence  */}
+              <img className={
+                {
+                  '0': "curve-top-right",
+                  '1': "curve-top-left",
+                  '2': "curve-bottom-right",
+                  '3': "curve-bottom-left"
+                }[index % 4]
+              } src={project.image_src} alt={"Photo 1"} />
+              <div className='d-flex align-items-center mt-3 mb-4'>
+                <div>
+                  <h6 className="my-0">{project.name}</h6>
+                  <p className='my-0'>{project.type}</p>
+                </div>
+                <IconButton className={"bg-primary-3 primary-2 ms-auto"} >
+                  <ArrowForwardIosIcon />
+                </IconButton>
+              </div>
+            </div>
+          </Grid>
+        ))}
 
 
-    </Grid>
+      </Grid>
+    </Fade>
+
   );
 }
 

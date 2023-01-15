@@ -4,33 +4,35 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { TopDisplay } from './Global';
 import { Price } from './types';
 import photo8 from "./assets/photo7.jpg";
+import Bounce from "react-reveal/Bounce";
 
 
 const PricingPage = () => {
 
-    const prices: Price[] = [
-      {
-        name: "Design Advices",
-        price: 29,
-        features: ["General Living Space Advises", "Renovation Advices", "Interior Design Advices", "Furniture Reorganisation", "Up to 5 hours meeting"]
-      },
-      {
-        name: "Complete Interior",
-        price: 39,
-        features: ["Complete Home Redesign", "Interior and Exterior works", "Modular Interior Planning", "Kitchen Design", "Garages Organisation"]
-      },
-      {
-        name: "Furniture Design",
-        price: 59,
-        features: ["Furniture for Living Room", "Furniture Refurbishment", "Sofas And Armchairs", "Tables and Chairs", "Kitchens"]
-      }
-    ];
-  
-    return (
-      <>
-        <TopDisplay name='Pricing & Plan' other="Home / Pricing" image_src={photo8} />
-  
+  const prices: Price[] = [
+    {
+      name: "Design Advices",
+      price: 29,
+      features: ["General Living Space Advises", "Renovation Advices", "Interior Design Advices", "Furniture Reorganisation", "Up to 5 hours meeting"]
+    },
+    {
+      name: "Complete Interior",
+      price: 39,
+      features: ["Complete Home Redesign", "Interior and Exterior works", "Modular Interior Planning", "Kitchen Design", "Garages Organisation"]
+    },
+    {
+      name: "Furniture Design",
+      price: 59,
+      features: ["Furniture for Living Room", "Furniture Refurbishment", "Sofas And Armchairs", "Tables and Chairs", "Kitchens"]
+    }
+  ];
+
+  return (
+    <>
+      <TopDisplay name='Pricing & Plan' other="Home / Pricing" image_src={photo8} />
+      <Bounce duration={1000} >
         <Grid container spacing={{ md: 5 }}>
+
           {prices.map((price, index) =>
             <Grid item xs={12} sm={6} lg={4} className={"text-center "}>
               <div className='bg-primary-3 br-15 py-4 mx-1 mt-2 shadow'>
@@ -55,9 +57,12 @@ const PricingPage = () => {
               </div>
             </Grid>
           )}
-        </Grid>
-      </>
-    );
-  }
 
-  export {PricingPage}
+        </Grid>
+      </Bounce>
+
+    </>
+  );
+}
+
+export { PricingPage }
