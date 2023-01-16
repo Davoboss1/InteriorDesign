@@ -61,7 +61,7 @@ const StatisticsView = ({ statistics }: { statistics: Statistic[] }) => (
 
 )
 //Article Display Component
-//Arguments = Statistic[]
+//Arguments = Article[]
 const ArticlesView = ({ articles }: { articles: Article[] }) => (
     <Fade duration={1500}>
         <Grid className="article-view" container spacing={{ md: 5 }}>

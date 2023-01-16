@@ -45,6 +45,10 @@ h6 {
     font-size: 18px;
 }
 
+button{
+    text-transform: initial !important;
+}
+
 .primary-1 {
     color: #CDA274;
 }
