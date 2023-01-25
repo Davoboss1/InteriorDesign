@@ -6,3 +6,5 @@ An Interior design website built with React.
 `npm install` to install all modules
 
 Then `npm run dev` or `yarn dev` to run dev server.
+
+Demo at http://interno.infinityfreeapp.com/
